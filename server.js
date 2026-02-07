@@ -4,12 +4,13 @@ const ejsMate = require('ejs-mate');
 const app = express();
 
 
-app.engine('ejs', ejsMate); 
+app.engine('ejs', ejsMate);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-
-app.use(express.static(path.join(__dirname, 'public')));
+// Add these lines to serve static files
+app.use(express.static('public'));           // NEW - for JS files
+app.use('/CSS', express.static('CSS'));      // This might already exist
 
 app.get('/', (req, res) => {
     res.render('index'); 
