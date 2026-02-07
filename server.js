@@ -24,6 +24,13 @@ app.get('/transaction', (req, res) => {
     res.render('transaction'); 
 });
 
+app.get('/login', (req, res) => {
+    res.render('login'); 
+});
+
+app.get('/signup', (req, res) => {
+    res.render('signup'); 
+});
 
 const PORT = 8080;
 app.listen(PORT, () => {
