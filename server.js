@@ -16,9 +16,16 @@ app.get('/', (req, res) => {
     res.render('index'); 
 });
 
+app.get('/about', (req, res) => {
+    res.render('about'); 
+});
+
+app.get('/transaction', (req, res) => {
+    res.render('transaction'); 
+});
 
 
-const PORT = 3000;
+const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

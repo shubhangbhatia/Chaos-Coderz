@@ -66,8 +66,7 @@ body::before {
 
 .navbar-brand i {
     background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+   
     background-clip: text;
 }
 
@@ -76,22 +75,6 @@ body::before {
     color: #333 !important;
     position: relative;
     transition: var(--transition);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: var(--primary-gradient);
-    transition: var(--transition);
-    transform: translateX(-50%);
-}
-
-.nav-link:hover::after {
-    width: 80%;
 }
 
 .btn-outline-primary {
@@ -105,7 +88,6 @@ body::before {
     background: var(--primary-gradient) !important;
     border-color: transparent !important;
     color: white !important;
-    transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
 }
 
@@ -143,7 +125,6 @@ body::before {
 }
 
 .card:hover {
-    transform: translateY(-5px);
     box-shadow: var(--card-shadow-hover);
 }
 
@@ -200,12 +181,20 @@ body::before {
 }
 
 .btn-primary:hover {
-    transform: translateY(-3px);
     box-shadow: 0 6px 25px rgba(102, 126, 234, 0.6);
 }
 
-.btn-primary:active {
-    transform: translateY(-1px);
+.btn-secondary {
+    background: #6c757d !important;
+    border: none !important;
+    padding: 12px 30px;
+    font-weight: 600;
+    border-radius: 12px;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover {
+    background: #5a6268 !important;
 }
 
 /* ===== TABLE STYLES ===== */
@@ -213,9 +202,7 @@ body::before {
     background: transparent !important;
 }
 
-.table thead {
-    background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
-}
+
 
 .table th {
     border: none !important;
@@ -246,8 +233,7 @@ body::before {
 /* ===== FOOTER STYLES ===== */
 .footer {
     background: rgba(255, 255, 255, 0.95) !important;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);    
     box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
 }
 
@@ -262,30 +248,9 @@ body::before {
 
 .f-info-socials a i {
     background: var(--primary-gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.underline-hover {
-    position: relative;
-    transition: var(--transition);
-}
-
-.underline-hover::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary-gradient);
-    transition: var(--transition);
-}
-
-.underline-hover:hover::after {
-    width: 100%;
-}
 
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
@@ -297,19 +262,6 @@ body::before {
         opacity: 1;
         transform: translateY(0);
     }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-.fade-in {
-    animation: fadeIn 0.5s ease-out;
 }
 
 .fade-in-up {
@@ -329,23 +281,8 @@ body::before {
 
 .stats-card:hover {
     background: rgba(255, 255, 255, 0.15);
-    transform: translateX(5px);
 }
 
-/* ===== BADGE STYLES ===== */
-.badge {
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
-    font-weight: 600;
-}
-
-.badge-income {
-    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
-}
-
-.badge-expense {
-    background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
-}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
@@ -360,22 +297,18 @@ body::before {
     .card-body {
         padding: 2rem !important;
     }
-}
-
-/* ===== SCROLLBAR ===== */
-::-webkit-scrollbar {
-    width: 10px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-    background: var(--primary-gradient);
-    border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: var(--secondary-gradient);
+    
+    .transaction-type-selector {
+        flex-direction: column;
+    }
+    
+    .type-option {
+        flex-direction: row;
+        gap: 1rem;
+    }
+    
+    .type-option i {
+        margin-bottom: 0;
+        font-size: 1.5rem;
+    }
 }

@@ -1,0 +1,81 @@
+<% layout("layouts/boilerplate") %>
+
+<div class="container-fluid px-0">
+    <div class="row g-4 mt-4">
+        <div class="col-lg-8 mx-auto">
+            <div class="card border-0 shadow-lg fade-in-up">
+                <div class="card-body p-5">
+                    <h2 class="card-title fw-bold mb-5">
+                        <i class="fas fa-plus-circle me-2"></i>Add New Transaction
+                    </h2>
+                    
+                    <form>
+                        <!-- Transaction Name -->
+                        <div class="mb-4">
+                            <label for="transactionName" class="form-label fw-semibold">
+                                <i class="fas fa-tag me-2 text-primary"></i>Transaction Name
+                            </label>
+                            <input type="text" class="form-control form-control-lg" id="transactionName" placeholder="e.g., Groceries, Salary" required>
+                        </div>
+
+                        <!-- Transaction Type (Income/Expense) -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold">
+                                <i class="fas fa-exchange-alt me-2 text-primary"></i>Transaction Type
+                            </label>
+                            <div class="transaction-type-selector">
+                                <div class="form-check form-check-custom">
+                                    <input class="form-check-input" type="radio" name="transactionType" id="typeIncome" value="income">
+                                    <label class="form-check-label" for="typeIncome">
+                                        <div class="type-option income-option">
+                                            <i class="fas fa-arrow-up"></i>
+                                            <span>Income</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="form-check form-check-custom">
+                                    <input class="form-check-input" type="radio" name="transactionType" id="typeExpense" value="expense" checked>
+                                    <label class="form-check-label" for="typeExpense">
+                                        <div class="type-option expense-option">
+                                            <i class="fas fa-arrow-down"></i>
+                                            <span>Expense</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Transaction Amount -->
+                        <div class="mb-4">
+                            <label for="transactionAmount" class="form-label fw-semibold">
+                                <i class="fas fa-rupee-sign me-2 text-primary"></i>Amount
+                            </label>
+                            <div class="input-group input-group-lg">
+                               
+                                <input type="number" class="form-control" id="transactionAmount" placeholder="0.00" step="0.01" min="0" required>
+                            </div>
+                        </div>
+
+                        <!-- Transaction Date -->
+                        <div class="mb-4">
+                            <label for="transactionDate" class="form-label fw-semibold">
+                                <i class="fas fa-calendar-alt me-2 text-primary"></i>Date
+                            </label>
+                            <input type="date" class="form-control form-control-lg" id="transactionDate" required>
+                        </div>
+
+                        <!-- Buttons -->
+                        <div class="d-flex gap-3 mt-5">
+                            <a href="/" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-check me-2"></i>Add Transaction
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
