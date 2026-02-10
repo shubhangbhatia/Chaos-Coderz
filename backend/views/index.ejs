@@ -1,0 +1,282 @@
+<% layout("layouts/boilerplate") %>
+
+    <!-- Hero/Summary Section -->
+    <div class="container-fluid px-0">
+        <div class="row g-4">
+            <!-- Main Balance Card -->
+            <div class="col-12">
+                <div class="card border-0 shadow-lg fade-in-up">
+                    <div class="card-body p-5">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6">
+                                <p class="expense-label mb-2">Total Balance</p>
+                                <h1 class="expense-amount mb-3">₹<%= stats.balance.toLocaleString('en-IN') %>
+                                </h1>
+                                <div class="d-flex align-items-center gap-3 mb-4">
+                                    <div>
+                                        <p class="expense-label mb-1">Expense Status</p>
+                                        <h3 class="expense-this-month mb-0">₹<%= stats.expense.toLocaleString('en-IN')
+                                                %>
+                                        </h3>
+                                    </div>
+                                    <div class="ms-4">
+                                        <span
+                                            class="badge <%= stats.balance >= 0 ? 'badge-income' : 'badge-expense' %>">
+                                            <i
+                                                class="fas <%= stats.balance >= 0 ? 'fa-wallet' : 'fa-exclamation-triangle' %> me-1"></i>
+                                            <%= stats.balance>= 0 ? 'Healthy' : 'Overdrawn' %>
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- Navigate to transaction page -->
+                                <a href="/transaction" class="btn btn-outline-primary btn-lg">
+                                    <i class="fas fa-plus me-2"></i>Add Transaction
+                                </a>
+                            </div>
+
+                            <!-- Quick Stats -->
+                            <div class="col-lg-6 mt-4 mt-lg-0">
+                                <div class="stats-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <p class="text-black-50 mb-1 small">Total Income</p>
+                                            <h4 class="text-success mb-0">₹<%= stats.income.toLocaleString('en-IN') %>
+                                            </h4>
+                                        </div>
+                                        <div class="text-success">
+                                            <i class="fas fa-arrow-up fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="stats-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <p class="text-black-50 mb-1 small">Total Expenses</p>
+                                            <h4 class="text-danger mb-0">₹<%= stats.expense.toLocaleString('en-IN') %>
+                                            </h4>
+                                        </div>
+                                        <div class="text-danger">
+                                            <i class="fas fa-arrow-down fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="stats-card">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div>
+                                            <p class="text-black-50 mb-1 small">Savings Rate</p>
+                                            <h4 class="text-info mb-0">
+                                                <%= stats.savingsRate %>%
+                                            </h4>
+                                        </div>
+                                        <div class="text-info">
+                                            <i class="fas fa-piggy-bank fa-2x"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <div class="card border-0 shadow-lg fade-in-up">
+                    <div class="card-body p-5">
+                        <% if (bills && bills.length> 0) {
+                            const latestBill = bills[0]; // Sort by due date ASC, so [0] is the soonest
+                            %>
+                            <div class="row align-items-center">
+                                <div class="col-lg-6">
+                                    <p class="text-muted text-uppercase fw-bold mb-2">Upcoming Bill: <%= latestBill.name
+                                            %>
+                                    </p>
+                                    <h1 class="display-5 fw-bold mb-3">
+                                        <%= latestBill.status==='pending' ? 'Pending' : 'Settled' %>
+                                    </h1>
+                                    <div class="d-flex align-items-center gap-3 mb-4">
+                                        <div>
+                                            <p class="text-muted mb-1">Amount Due</p>
+                                            <h3 class="fw-bold mb-0">₹<%= latestBill.amount.toLocaleString('en-IN') %>
+                                            </h3>
+                                        </div>
+                                        <div class="ms-4">
+                                            <span
+                                                class="badge <%= latestBill.status === 'pending' ? 'bg-warning text-dark' : 'bg-success text-white' %> px-3 py-2">
+                                                <i
+                                                    class="fas <%= latestBill.status === 'pending' ? 'fa-clock' : 'fa-check' %> me-1"></i>
+                                                <%= latestBill.status.charAt(0).toUpperCase() +
+                                                    latestBill.status.slice(1) %>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <a href="/add-bill" class="btn btn-primary btn-lg">
+                                        <i class="fas fa-file-invoice-dollar me-2"></i>Add Another Bill
+                                    </a>
+                                </div>
+
+                                <div class="col-lg-6 mt-4 mt-lg-0">
+                                    <div class="stats-card p-4 mb-3 border rounded-3 bg-light">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <p class="text-black-50 mb-1 small">Total Bill Amount</p>
+                                                <h4 class="text-black mb-0">₹<%=
+                                                        latestBill.amount.toLocaleString('en-IN') %>
+                                                </h4>
+                                            </div>
+                                            <div class="text-primary">
+                                                <i class="fas fa-receipt fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="stats-card p-4 border rounded-3 bg-light">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div>
+                                                <p class="text-black-50 mb-1 small">Due Date</p>
+                                                <h4 class="text-danger mb-0">
+                                                    <%= new Date(latestBill.dueDate).toLocaleDateString('en-IN', {
+                                                        month: 'short' , day: '2-digit' , year: 'numeric' }) %>
+                                                </h4>
+                                            </div>
+                                            <div class="text-danger">
+                                                <i class="fas fa-calendar-exclamation fa-2x"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } else { %>
+                                <div class="text-center py-4">
+                                    <i class="fas fa-file-invoice-dollar fa-3x text-muted mb-3"></i>
+                                    <h3>No Pending Bills</h3>
+                                    <p class="text-muted">You're all caught up! Add a new bill to track upcoming
+                                        payments.</p>
+                                    <a href="/add-bill" class="btn btn-primary btn-lg mt-2">
+                                        <i class="fas fa-plus me-2"></i>Add New Bill
+                                    </a>
+                                </div>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+            <!-- Transaction History Section -->
+            <div class="col-12 mt-4">
+                <div class="card border-0 shadow-lg fade-in">
+                    <div class="card-body p-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <h2 class="card-title fw-bold mb-0">
+                                <i
+                                    class="fas <%= (locals.query && (query.q || query.date)) ? 'fa-search' : 'fa-history' %> me-2"></i>
+                                <%= (locals.query && (query.q || query.date)) ? 'Search Results' : 'Transaction History'
+                                    %>
+                            </h2>
+                            <div class="btn-group" role="group">
+                                <button type="button" class="btn btn-outline-primary active"
+                                    data-filter="all">All</button>
+                                <button type="button" class="btn btn-outline-primary"
+                                    data-filter="income">Income</button>
+                                <button type="button" class="btn btn-outline-primary"
+                                    data-filter="expense">Expense</button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <i class="fas fa-hashtag me-2"></i>ID
+                                        </th>
+                                        <th scope="col">
+                                            <i class="fas fa-tag me-2"></i>Name
+                                        </th>
+                                        <th scope="col">
+                                            <i class="fas fa-rupee-sign me-2"></i>Amount
+                                        </th>
+                                        <th scope="col">
+                                            <i class="fas fa-exchange-alt me-2"></i>Type
+                                        </th>
+                                        <th scope="col">
+                                            <% const currentOrder=(locals.query && query.sortBy==='date' ) ? query.order
+                                                : 'desc' ; const nextOrder=currentOrder==='desc' ? 'asc' : 'desc' ;
+                                                const sortQuery={ ...query, sortBy: 'date' , order: nextOrder }; %>
+                                                <a href="/?<%= new URLSearchParams(sortQuery).toString() %>"
+                                                    class="text-decoration-none text-dark d-flex align-items-center">
+                                                    <i class="fas fa-calendar me-2"></i>Date
+                                                    <i
+                                                        class="fas fa-sort<%= currentOrder === 'asc' ? '-up' : (currentOrder === 'desc' ? '-down' : '') %> ms-1 small text-muted"></i>
+                                                </a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (transactions.length> 0) { %>
+                                        <% transactions.forEach((t, index)=> { %>
+                                            <tr data-type="<%= t.type %>">
+                                                <td><span class="badge bg-light text-dark">#<%= index + 1 %></span></td>
+                                                <td>
+                                                    <div class="d-flex align-items-center">
+                                                        <div
+                                                            class="rounded-circle bg-<%= t.type === 'income' ? 'success' : 'primary' %> bg-opacity-10 p-2 me-2">
+                                                            <i
+                                                                class="fas <%= t.type === 'income' ? 'fa-briefcase' : 'fa-shopping-cart' %> text-<%= t.type === 'income' ? 'success' : 'primary' %>"></i>
+                                                        </div>
+                                                        <%= t.name %>
+                                                    </div>
+                                                </td>
+                                                <td class="text-<%= t.type === 'income' ? 'success' : 'danger' %>">
+                                                    <strong>₹<%= t.amount.toLocaleString('en-IN') %></strong>
+                                                </td>
+                                                <td>
+                                                    <span class="badge badge-<%= t.type %> text-dark">
+                                                        <%= t.type.charAt(0).toUpperCase() + t.type.slice(1) %>
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <%= new Date(t.date).toLocaleDateString('en-IN', { month: 'short' ,
+                                                        day: '2-digit' , year: 'numeric' }) %>
+                                                </td>
+                                            </tr>
+                                            <% }) %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="5" class="text-center py-5">
+                                                            <div class="fade-in">
+                                                                <i
+                                                                    class="fas fa-inbox fa-3x text-muted mb-3 d-block"></i>
+                                                                <h5 class="text-muted">No transactions yet</h5>
+                                                                <p class="text-muted">Start by adding your first
+                                                                    transaction!</p>
+                                                                <% if (currentUser) { %>
+                                                                    <a href="/transaction" class="btn btn-primary mt-2">
+                                                                        Add First Transaction
+                                                                    </a>
+                                                                    <% } %>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <nav aria-label="Transaction pagination" class="mt-4">
+                            <ul class="pagination justify-content-center mb-0">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                                </li>
+                                <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

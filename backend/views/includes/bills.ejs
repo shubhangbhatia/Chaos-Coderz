@@ -1,0 +1,80 @@
+<div class="modal fade" id="addOrderModal" tabindex="-1" aria-labelledby="addOrderModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content modal-custom border-0 shadow-lg" style="border-radius: 20px; overflow: hidden;">
+            <div class="modal-header border-0 bg-primary text-white p-4">
+                <h5 class="modal-title fw-bold" id="addOrderModalLabel">
+                    <i class="fas fa-file-invoice-dollar me-2"></i>Create New Bill
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-5">
+                <form action="/add-bill" method="POST" id="orderForm" class="needs-validation" novalidate>
+                    <div class="mb-4">
+                        <label for="orderName" class="form-label fw-semibold">
+                            <i class="fas fa-shopping-bag me-2 text-primary"></i>Order / Customer Name
+                        </label>
+                        <input type="text" class="form-control form-control-lg bg-light border-0" id="orderName"
+                            name="orderName" placeholder="e.g., Client Alpha - Web Design" required>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="billAmount" class="form-label fw-semibold">
+                            <i class="fas fa-rupee-sign me-2 text-primary"></i>Bill Amount
+                        </label>
+                        <div class="input-group input-group-lg">
+                            <span class="input-group-text bg-light border-0">₹</span>
+                            <input type="number" class="form-control bg-light border-0" id="billAmount"
+                                name="billAmount" placeholder="0.00" step="0.01" min="0" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">
+                            <i class="fas fa-tasks me-2 text-primary"></i>Initial Status
+                        </label>
+                        <div class="transaction-type-selector">
+                            <div class="form-check form-check-custom">
+                                <input class="form-check-input" type="radio" name="orderStatus" id="statusPending"
+                                    value="pending" checked>
+                                <label class="form-check-label" for="statusPending">
+                                    <div class="type-option expense-option"> <i class="fas fa-clock"></i>
+                                        <span>Pending</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="form-check form-check-custom">
+                                <input class="form-check-input" type="radio" name="orderStatus" id="statusPaid"
+                                    value="paid">
+                                <label class="form-check-label" for="statusPaid">
+                                    <div class="type-option income-option"> <i class="fas fa-check-double"></i>
+                                        <span>Paid</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="dueDate" class="form-label fw-semibold">
+                            <i class="fas fa-calendar-exclamation me-2 text-primary"></i>Due Date
+                        </label>
+                        <input type="date" class="form-control form-control-lg bg-light border-0" id="dueDate"
+                            name="dueDate" required>
+                        <div class="form-text mt-2">
+                            <i class="fas fa-info-circle me-1"></i> Notification will be sent on this date.
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer border-0 p-4 pt-0">
+                <button type="button" class="btn btn-light px-4 fw-semibold" data-bs-dismiss="modal">
+                    Cancel
+                </button>
+                <button type="submit" form="orderForm" class="btn btn-primary px-4 fw-semibold shadow-sm">
+                    <i class="fas fa-plus me-2"></i>Generate Bill
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

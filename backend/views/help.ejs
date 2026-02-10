@@ -1,0 +1,338 @@
+<% layout("layouts/boilerplate") %>
+
+<!-- Hero -->
+<div class="help-hero-section">
+    <div class="container py-5">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <div class="help-badge mb-3 fade-in-up"><i class="fas fa-life-ring me-2"></i>Financial Guidance Center</div>
+                <h1 class="display-3 fw-bold mb-4 fade-in-up" style="animation-delay: 0.1s;">
+                    Transform Your <span class="help-gradient-text">Financial Future</span>
+                </h1>
+                <p class="lead text-white mb-5 fade-in-up" style="animation-delay: 0.2s;">
+                    Structured, actionable plans designed to build lasting habits and financial resilience
+                </p>
+                <div class="help-search-container fade-in-up" style="animation-delay: 0.3s;">
+                    <div class="help-search-box">
+                        <i class="fas fa-search search-icon"></i>
+                        <input type="text" id="helpSearch" class="help-search-input" placeholder="Search for saving challenges, debt payoff, budgeting tips...">
+                        <button class="help-search-btn"><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+                <div class="help-quick-stats mt-4 fade-in" style="animation-delay: 0.4s;">
+                    <div class="help-stat"><i class="fas fa-book-open"></i><span>50+ Guides</span></div>
+                    <div class="help-stat"><i class="fas fa-video"></i><span>20+ Tutorials</span></div>
+                    <div class="help-stat"><i class="fas fa-headset"></i><span>24/7 Support</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="help-wave"></div>
+</div>
+
+<!-- Quick Nav -->
+<section class="quick-nav-section py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4 fade-in-up">
+                <a href="#saving-challenges" class="quick-nav-card">
+                    <div class="quick-nav-icon saving-icon"><i class="fas fa-piggy-bank fa-2x"></i></div>
+                    <h5 class="fw-bold mt-3">Saving Challenges</h5>
+                    <p class="text-muted small mb-0">Build consistent saving habits</p>
+                </a>
+            </div>
+            <div class="col-md-4 fade-in-up" style="animation-delay: 0.1s;">
+                <a href="#emergency-fund" class="quick-nav-card">
+                    <div class="quick-nav-icon emergency-icon"><i class="fas fa-shield-alt fa-2x"></i></div>
+                    <h5 class="fw-bold mt-3">Emergency Fund</h5>
+                    <p class="text-muted small mb-0">Prepare for unexpected expenses</p>
+                </a>
+            </div>
+            <div class="col-md-4 fade-in-up" style="animation-delay: 0.2s;">
+                <a href="#expense-reduction" class="quick-nav-card">
+                    <div class="quick-nav-icon expense-icon"><i class="fas fa-chart-line fa-2x"></i></div>
+                    <h5 class="fw-bold mt-3">Reduce Expenses</h5>
+                    <p class="text-muted small mb-0">Smart spending strategies</p>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Content -->
+<section class="help-content-section py-5">
+    <div class="container">
+        <!-- Saving Challenges -->
+        <div id="saving-challenges" class="help-topic-section mb-5 fade-in-up">
+            <div class="topic-header">
+                <div class="topic-icon-wrapper"><i class="fas fa-trophy topic-icon"></i></div>
+                <div>
+                    <h2 class="topic-title">Step-by-Step Saving Challenges</h2>
+                    <p class="topic-subtitle">Form consistent money-saving habits through gamified challenges</p>
+                </div>
+            </div>
+            <div class="help-content-card">
+                <div class="content-intro">
+                    <p class="lead">Transform saving from a chore to an engaging journey. Our guided challenges break down large goals into achievable daily, weekly, or monthly tasks, making it easy to build lasting habits.</p>
+                </div>
+                <div class="feature-highlights">
+                    <div class="feature-item"><i class="fas fa-check-circle"></i><span>Visual progress tracking with badges and rewards</span></div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i><span>Personalized targets based on your income and goals</span></div>
+                    <div class="feature-item"><i class="fas fa-check-circle"></i><span>Smart reminders and motivational prompts</span></div>
+                </div>
+                <h4 class="section-heading mt-4 mb-3"><i class="fas fa-fire me-2"></i>Popular Challenges</h4>
+                <div class="challenge-accordion">
+                    <div class="challenge-card">
+                        <div class="challenge-header" onclick="toggleChallenge('challenge1')">
+                            <div class="d-flex align-items-center">
+                                <div class="challenge-emoji me-3">🎯</div>
+                                <div>
+                                    <h5 class="mb-0">The Guess-Your-Bills Challenge</h5>
+                                    <p class="text-muted small mb-0">Predict and save the difference</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-icon" id="icon-challenge1"></i>
+                        </div>
+                        <div class="challenge-content" id="content-challenge1">
+                            <p>At the start of each month, estimate your total expenses across all categories — groceries, utilities, transportation, entertainment, etc. At the end of the month, compare your prediction with your actual spending.</p>
+                            <p class="fw-bold text-success"><i class="fas fa-star me-2"></i>The Reward: Transfer the difference between your guess and actual cost directly into your savings account.</p>
+                            <div class="challenge-tip"><i class="fas fa-lightbulb me-2"></i><strong>Pro Tip:</strong> This challenge improves your budgeting awareness while rewarding accurate predictions!</div>
+                        </div>
+                    </div>
+                    <div class="challenge-card">
+                        <div class="challenge-header" onclick="toggleChallenge('challenge2')">
+                            <div class="d-flex align-items-center">
+                                <div class="challenge-emoji me-3">👔</div>
+                                <div>
+                                    <h5 class="mb-0">Mindful Clothing Challenge</h5>
+                                    <p class="text-muted small mb-0">Sustainable fashion habits</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-icon" id="icon-challenge2"></i>
+                        </div>
+                        <div class="challenge-content" id="content-challenge2">
+                            <p>Commit to reducing clothing waste through conscious consumption. Set a goal to upcycle old clothes, rent for special occasions, or commit to wearing every new purchase at least 30 times.</p>
+                            <ul class="challenge-list">
+                                <li>Upcycle: Transform old items into new styles</li>
+                                <li>Rent: Use rental services for one-time events</li>
+                                <li>30-Wear Rule: Only buy if you'll wear it 30+ times</li>
+                            </ul>
+                            <div class="challenge-tip"><i class="fas fa-leaf me-2"></i><strong>Impact:</strong> Save money while reducing environmental footprint!</div>
+                        </div>
+                    </div>
+                    <div class="challenge-card">
+                        <div class="challenge-header" onclick="toggleChallenge('challenge3')">
+                            <div class="d-flex align-items-center">
+                                <div class="challenge-emoji me-3">🚫</div>
+                                <div>
+                                    <h5 class="mb-0">No-Spend Challenge</h5>
+                                    <p class="text-muted small mb-0">Pause non-essential spending</p>
+                                </div>
+                            </div>
+                            <i class="fas fa-chevron-down toggle-icon" id="icon-challenge3"></i>
+                        </div>
+                        <div class="challenge-content" id="content-challenge3">
+                            <p>Choose a specific period (a week, two weeks, or a full month) to completely pause all non-essential spending. This includes dining out, entertainment subscriptions, hobby purchases, and impulse buys.</p>
+                            <p class="fw-bold text-primary"><i class="fas fa-piggy-bank me-2"></i>What to do: Redirect all would-be spending into your savings account.</p>
+                            <div class="challenge-tip"><i class="fas fa-robot me-2"></i><strong>Automation Tip:</strong> Set up recurring transfers to make saving effortless and automatic!</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Emergency Fund -->
+        <div id="emergency-fund" class="help-topic-section mb-5 fade-in-up">
+            <div class="topic-header">
+                <div class="topic-icon-wrapper emergency-bg"><i class="fas fa-umbrella topic-icon"></i></div>
+                <div>
+                    <h2 class="topic-title">Emergency Fund Building</h2>
+                    <p class="topic-subtitle">Prepare for life's unexpected moments with confidence</p>
+                </div>
+            </div>
+            <div class="help-content-card">
+                <div class="content-intro">
+                    <p class="lead">Build a financial safety net that protects you from unexpected expenses like medical emergencies, car repairs, or sudden job loss.</p>
+                </div>
+                <div class="emergency-targets">
+                    <div class="target-card">
+                        <div class="target-icon"><i class="fas fa-bullseye"></i></div>
+                        <h5 class="fw-bold">The Target</h5>
+                        <p class="mb-0">Save 3–6 months of essential living expenses</p>
+                    </div>
+                    <div class="target-card">
+                        <div class="target-icon"><i class="fas fa-vault"></i></div>
+                        <h5 class="fw-bold">Storage Options</h5>
+                        <p class="mb-0">High-yield savings account or controlled-access prepaid card</p>
+                    </div>
+                    <div class="target-card">
+                        <div class="target-icon"><i class="fas fa-calendar-check"></i></div>
+                        <h5 class="fw-bold">Strategy</h5>
+                        <p class="mb-0">Pay yourself first with automatic direct deposits</p>
+                    </div>
+                </div>
+                <div class="info-box mt-4">
+                    <div class="info-icon"><i class="fas fa-calculator"></i></div>
+                    <div class="info-content">
+                        <h6 class="fw-bold mb-2">How We Calculate Your Target</h6>
+                        <p class="mb-0">Our platform analyzes your monthly expenses, dependents, and risk factors to recommend an ideal emergency fund target. We then create a personalized weekly or monthly deposit plan that fits your budget.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Expense Reduction -->
+        <div id="expense-reduction" class="help-topic-section mb-5 fade-in-up">
+            <div class="topic-header">
+                <div class="topic-icon-wrapper expense-bg"><i class="fas fa-cut topic-icon"></i></div>
+                <div>
+                    <h2 class="topic-title">Expense Reduction Suggestions</h2>
+                    <p class="topic-subtitle">Smart strategies to cut unnecessary spending</p>
+                </div>
+            </div>
+            <div class="help-content-card">
+                <div class="content-intro">
+                    <p class="lead">Get tailored recommendations based on your spending patterns. Our AI analyzes your transactions and identifies actionable ways to reduce expenses without sacrificing quality of life.</p>
+                </div>
+                <h4 class="section-heading mb-3"><i class="fas fa-magic me-2"></i>Smart Reduction Tactics</h4>
+                <div class="tactics-grid">
+                    <div class="tactic-card">
+                        <div class="tactic-number">01</div>
+                        <h5 class="fw-bold">Categorize Your Spend</h5>
+                        <p>Separate "Needs" (rent, groceries, utilities) from "Wants" (entertainment, dining out). Ensure your "Wants" align with your personal values and bring genuine joy.</p>
+                        <div class="tactic-tag"><i class="fas fa-tag me-1"></i>Budgeting</div>
+                    </div>
+                    <div class="tactic-card">
+                        <div class="tactic-number">02</div>
+                        <h5 class="fw-bold">Audit Recurring Costs</h5>
+                        <p>Review bank statements for forgotten subscriptions or unused streaming services. Cancel anything you haven't actively used in the last 30 days.</p>
+                        <div class="tactic-tag"><i class="fas fa-tag me-1"></i>Subscriptions</div>
+                    </div>
+                    <div class="tactic-card">
+                        <div class="tactic-number">03</div>
+                        <h5 class="fw-bold">Control Impulse Buys</h5>
+                        <p>Use email filters to hide promotional offers. Implement the 24-hour rule: wait a full day before completing any non-essential purchase.</p>
+                        <div class="tactic-tag"><i class="fas fa-tag me-1"></i>Mindfulness</div>
+                    </div>
+                </div>
+                <div class="prediction-box mt-4">
+                    <i class="fas fa-chart-line prediction-icon"></i>
+                    <div>
+                        <h6 class="fw-bold mb-2">See Your Savings Potential</h6>
+                        <p class="mb-0">Our predictive analytics show exactly how changing specific habits impacts your future savings. Watch your projected balance grow in real-time!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Debt Payoff -->
+        <div id="debt-payoff" class="help-topic-section mb-5 fade-in-up">
+            <div class="topic-header">
+                <div class="topic-icon-wrapper debt-bg"><i class="fas fa-hand-holding-usd topic-icon"></i></div>
+                <div>
+                    <h2 class="topic-title">Debt Payoff Roadmaps</h2>
+                    <p class="topic-subtitle">Systematically eliminate debt with proven strategies</p>
+                </div>
+            </div>
+            <div class="help-content-card">
+                <div class="content-intro">
+                    <p class="lead">Choose from psychology-backed debt elimination strategies. Whether it's credit cards, student loans, or personal debt, we'll create a custom roadmap for your freedom.</p>
+                </div>
+                <div class="row g-4 mt-3">
+                    <div class="col-md-6">
+                        <div class="method-card snowball-method">
+                            <div class="method-badge"><i class="fas fa-snowflake"></i></div>
+                            <h4 class="fw-bold mb-3">Snowball Method</h4>
+                            <p class="mb-3">Pay off smallest balances first to gain momentum and psychological "quick wins" that keep you motivated.</p>
+                            <div class="method-benefits">
+                                <div class="benefit-item"><i class="fas fa-check text-success me-2"></i>Fast early victories</div>
+                                <div class="benefit-item"><i class="fas fa-check text-success me-2"></i>Builds confidence</div>
+                                <div class="benefit-item"><i class="fas fa-check text-success me-2"></i>Increases motivation</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="method-card avalanche-method">
+                            <div class="method-badge"><i class="fas fa-mountain"></i></div>
+                            <h4 class="fw-bold mb-3">Avalanche Method</h4>
+                            <p class="mb-3">Prioritize debts with highest interest rates to minimize total interest paid over time and save more money.</p>
+                            <div class="method-benefits">
+                                <div class="benefit-item"><i class="fas fa-check text-primary me-2"></i>Saves more money</div>
+                                <div class="benefit-item"><i class="fas fa-check text-primary me-2"></i>Mathematically optimal</div>
+                                <div class="benefit-item"><i class="fas fa-check text-primary me-2"></i>Faster debt freedom</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="management-tips mt-4">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-shield-alt me-2"></i>Management & Prevention</h5>
+                    <ul class="tips-list">
+                        <li>Consolidate high-interest debt into lower-rate loans when possible</li>
+                        <li>Use a single primary card for expenses to simplify tracking</li>
+                        <li>Set up automatic payments to avoid late fees and penalties</li>
+                        <li>Track payoff progress visually to stay motivated</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Resources -->
+<section class="resources-section py-5 mb-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="display-5 fw-bold mb-3">Additional Resources</h2>
+            <p class="lead text-muted">Dive deeper with expert guides and trusted sources</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-book"></i></div>
+                    <h5 class="fw-bold">Learning Center</h5>
+                    <p class="text-muted small">Comprehensive guides on budgeting, investing, and financial planning</p>
+                    <a href="#" class="resource-link">Explore Now <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-video"></i></div>
+                    <h5 class="fw-bold">Video Tutorials</h5>
+                    <p class="text-muted small">Step-by-step walkthroughs for using every feature of the platform</p>
+                    <a href="#" class="resource-link">Watch Now <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-4">
+                <div class="resource-card">
+                    <div class="resource-icon"><i class="fas fa-comments"></i></div>
+                    <h5 class="fw-bold">Community Forum</h5>
+                    <p class="text-muted small">Connect with other users, share tips, and get peer support</p>
+                    <a href="#" class="resource-link">Join Discussion <i class="fas fa-arrow-right ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Support CTA -->
+<section class="support-cta-section py-5 mb-5">
+    <div class="container">
+        <div class="support-cta-card">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h3 class="fw-bold mb-2">Still need help?</h3>
+                    <p class="mb-0">Our support team is here 24/7 to answer your questions and guide you on your financial journey.</p>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                    <a href="/contact" class="btn btn-light btn-lg px-5"><i class="fas fa-headset me-2"></i>Contact Support</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+function toggleChallenge(id){const c=document.getElementById('content-'+id),i=document.getElementById('icon-'+id);if(c.style.maxHeight){c.style.maxHeight=null;i.style.transform='rotate(0deg)'}else{c.style.maxHeight=c.scrollHeight+'px';i.style.transform='rotate(180deg)'}}
+document.getElementById('helpSearch')?.addEventListener('input',function(e){const s=e.target.value.toLowerCase();document.querySelectorAll('.help-topic-section').forEach(section=>{section.style.display=section.textContent.toLowerCase().includes(s)||s===''?'block':'none'})});
+document.querySelectorAll('.quick-nav-card').forEach(card=>{card.addEventListener('click',function(e){e.preventDefault();document.querySelector(this.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'})})});
+</script>

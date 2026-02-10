@@ -1,0 +1,96 @@
+<nav class="navbar navbar-expand-lg border-bottom sticky-top">
+    <div class="container-fluid px-4">
+        <!-- Brand -->
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <img src="/CSS/favicon.png" alt="Logo"
+                style="height: 45px; width: auto; object-fit: contain; margin-right: 8px;">
+            <span>Finance Genie</span>
+        </a>
+
+        <!-- Mobile Toggle -->
+        <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar Content -->
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <!-- Search Bar (Desktop) -->
+            <div class="mx-auto d-none d-lg-block">
+                <form class="d-flex gap-2" role="search" action="/" method="GET" style="min-width: 500px;">
+                    <div class="input-group">
+                        <span class="input-group-text bg-white border-end-0">
+                            <i class="fas fa-search text-muted"></i>
+                        </span>
+                        <input class="form-control border-start-0 ps-0" type="search" name="q"
+                            placeholder="Search transactions..." aria-label="Search" />
+                        <span class="input-group-text bg-white border-end-0 border-start-0">
+                            <i class="fas fa-calendar-alt text-muted"></i>
+                        </span>
+                        <input class="form-control border-start-0 ps-0" type="date" name="date"
+                            aria-label="Search by date" />
+                    </div>
+                    <button class="btn btn-outline-primary" type="submit">
+                        Search
+                    </button>
+                    <% if (locals.query && (query.q || query.date)) { %>
+                        <a href="/" class="btn btn-outline-secondary">Clear</a>
+                        <% } %>
+                </form>
+            </div>
+
+            <!-- Search Bar (Mobile) -->
+            <form class="d-flex d-lg-none mt-3 mb-2" role="search" action="/" method="GET">
+                <div class="input-group">
+                    <span class="input-group-text bg-white border-end-0">
+                        <i class="fas fa-search text-muted"></i>
+                    </span>
+                    <input class="form-control border-start-0 ps-0" type="search" name="q" placeholder="Search..."
+                        aria-label="Search" />
+                    <input class="form-control border-start-0 ps-0" type="date" name="date"
+                        aria-label="Search by date" />
+                    <button class="btn btn-outline-primary" type="submit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </form>
+
+            <!-- Navigation Links -->
+            <div class="navbar-nav ms-auto align-items-lg-center gap-2">
+                <a class="nav-link d-flex align-items-center" href="/">
+                    <i class="fas fa-home me-2"></i>
+                    <span>Home</span>
+                </a>
+
+                <a class="nav-link d-flex align-items-center" href="/dashboard">
+                    <i class="fas fa-chart-line me-2"></i>
+                    <span>Dashboard</span>
+                </a>
+
+                <div class="d-flex gap-2 mt-2 mt-lg-0">
+                    <% if (!currentUser) { %>
+                        <a class="btn btn-outline-primary rounded-pill px-4" href="/signup">
+                            <i class="fas fa-user-plus me-2"></i>
+                            Sign Up
+                        </a>
+                        <a class="btn btn-outline-primary rounded-pill px-4" href="/login">
+                            <i class="fas fa-sign-in-alt me-2"></i>
+                            Login
+                        </a>
+                        <% } else { %>
+                            <a class="btn btn-outline-danger rounded-pill px-4" href="/logout">
+                                <i class="fas fa-sign-out-alt me-2"></i>
+                                Logout
+                            </a>
+                            <% } %>
+                </div>
+
+                <a class="nav-link d-flex align-items-center mt-2 mt-lg-0" href="/about">
+                    <i class="fas fa-info-circle me-2"></i>
+                    <span>About Us</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
