@@ -55,7 +55,22 @@ app.use((err, req, res, next) => {
     res.status(500).send('Something went wrong on the server.');
 });
 
+// Initialize Email Service and Bill Scheduler
+const { initializeEmailService } = require('./backend/utils/emailService');
+const { startBillScheduler } = require('./backend/utils/billScheduler');
+
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
+
+    // Initialize email service
+    const emailInitialized = initializeEmailService();
+
+    // Start bill scheduler only if email service is initialized
+    if (emailInitialized) {
+        startBillScheduler();
+    } else {
+        console.warn('⚠️ Email service not initialized. Bill scheduler will not start.');
+        console.warn('⚠️ Please configure email credentials in .env file to enable notifications.');
+    }
 });

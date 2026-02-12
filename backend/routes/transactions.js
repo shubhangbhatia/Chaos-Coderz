@@ -45,16 +45,49 @@ router.get('/add-bill', isLoggedIn, (req, res) => {
 
 router.post('/add-bill', isLoggedIn, async (req, res) => {
     try {
-        const { orderName, billAmount, orderStatus, dueDate } = req.body;
+        const { orderName, billAmount, orderStatus, dueDate, isRecurring, recurringInterval, sendEmail } = req.body;
+
         const newBill = new Bill({
             userId: req.session.user.id,
             name: orderName,
             amount: parseFloat(billAmount),
             status: orderStatus,
-            dueDate: dueDate
+            dueDate: dueDate,
+            isRecurring: isRecurring === 'on',
+            recurringInterval: isRecurring === 'on' ? (recurringInterval || 'none') : 'none'
         });
 
         await newBill.save();
+
+        // Send confirmation email if requested
+        if (sendEmail === 'on') {
+            try {
+                const User = require('../modules/User');
+                const { sendBillCreatedEmail } = require('../utils/emailService');
+
+                const user = await User.findById(req.session.user.id);
+
+                if (user && user.email && user.emailNotifications) {
+                    await sendBillCreatedEmail(user.email, {
+                        name: newBill.name,
+                        amount: newBill.amount,
+                        dueDate: newBill.dueDate,
+                        status: newBill.status,
+                        isRecurring: newBill.isRecurring,
+                        recurringInterval: newBill.recurringInterval
+                    });
+
+                    // Update email tracking
+                    newBill.emailSent = true;
+                    newBill.lastEmailSent = new Date();
+                    await newBill.save();
+                }
+            } catch (emailError) {
+                console.error('Email sending failed (non-blocking):', emailError.message);
+                // Don't block bill creation if email fails
+            }
+        }
+
         res.redirect('/');
     } catch (error) {
         console.error('Bill creation error:', error);

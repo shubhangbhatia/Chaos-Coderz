@@ -82,6 +82,49 @@
                                 </div>
                             </div>
 
+                            <!-- Recurring Bill Options -->
+                            <div class="mb-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="isRecurring" name="isRecurring"
+                                        onchange="toggleRecurringOptions()">
+                                    <label class="form-check-label fw-semibold" for="isRecurring">
+                                        <i class="fas fa-repeat me-2 text-primary"></i>Make this a recurring bill
+                                    </label>
+                                </div>
+                            </div>
+
+                            <!-- Recurring Interval (hidden by default) -->
+                            <div class="mb-4" id="recurringIntervalField" style="display: none;">
+                                <label for="recurringInterval" class="form-label fw-semibold">
+                                    <i class="fas fa-clock me-2 text-primary"></i>Recurring Interval
+                                </label>
+                                <select class="form-select form-select-lg" id="recurringInterval"
+                                    name="recurringInterval">
+                                    <option value="weekly">Weekly</option>
+                                    <option value="monthly" selected>Monthly</option>
+                                    <option value="yearly">Yearly</option>
+                                </select>
+                                <div class="form-text mt-2">
+                                    <i class="fas fa-info-circle me-1"></i> A new bill will be created automatically
+                                    based on this interval.
+                                </div>
+                            </div>
+
+                            <!-- Email Notification Option -->
+                            <div class="mb-4">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="sendEmail" name="sendEmail"
+                                        checked>
+                                    <label class="form-check-label fw-semibold" for="sendEmail">
+                                        <i class="fas fa-envelope me-2 text-primary"></i>Send email notification
+                                    </label>
+                                </div>
+                                <div class="form-text mt-2">
+                                    <i class="fas fa-info-circle me-1"></i> You'll receive a confirmation email and
+                                    reminders 3 days before the due date.
+                                </div>
+                            </div>
+
                             <!-- Buttons -->
                             <div class="d-flex gap-3 mt-5">
                                 <a href="/" class="btn btn-secondary">

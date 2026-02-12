@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bill Reminder - Finance Genie</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8fafc;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            padding: 40px 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .header p {
+            margin: 10px 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px 30px;
+        }
+
+        .reminder-icon {
+            text-align: center;
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .countdown {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(217, 119, 6, 0.1) 100%);
+            border: 2px solid #f59e0b;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .countdown-number {
+            font-size: 72px;
+            font-weight: 800;
+            color: #f59e0b;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .countdown-label {
+            font-size: 18px;
+            color: #64748b;
+            font-weight: 600;
+        }
+
+        .bill-details {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-weight: 600;
+            color: #64748b;
+        }
+
+        .detail-value {
+            font-weight: 700;
+            color: #1e293b;
+        }
+
+        .amount {
+            font-size: 32px;
+            color: #f59e0b;
+            font-weight: 800;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .cta-button {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 16px;
+            margin: 30px 0;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+        }
+
+        .footer {
+            background: #f8fafc;
+            padding: 30px;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .footer a {
+            color: #f59e0b;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>💰 Finance Genie</h1>
+            <p>Bill Payment Reminder</p>
+        </div>
+
+        <div class="content">
+            <div class="reminder-icon">⏰</div>
+            <h2 style="text-align: center; color: #1e293b; margin: 0 0 10px;">Upcoming Bill Payment</h2>
+            <p style="text-align: center; color: #64748b; margin: 0 0 30px;">Don't forget! Your bill is due soon.</p>
+
+            <div class="countdown">
+                <div class="countdown-number">
+                    <%= daysUntilDue %>
+                </div>
+                <div class="countdown-label">DAY<%= daysUntilDue !==1 ? 'S' : '' %> UNTIL DUE</div>
+            </div>
+
+            <div class="bill-details">
+                <div class="detail-row">
+                    <span class="detail-label">Bill Name</span>
+                    <span class="detail-value">
+                        <%= billName %>
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Due Date</span>
+                    <span class="detail-value">
+                        <%= dueDate %>
+                    </span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Status</span>
+                    <span class="detail-value" style="color: #fb6340; font-weight: 800;">PENDING</span>
+                </div>
+            </div>
+
+            <div class="amount">₹<%= billAmount.toLocaleString() %>
+            </div>
+
+            <a href="http://localhost:8080/" class="cta-button">
+                Mark as Paid →
+            </a>
+
+            <p style="text-align: center; color: #64748b; font-size: 14px; margin-top: 30px;">
+                <strong>💡 Tip:</strong> Set up automatic payments to never miss a due date!
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>This is an automated reminder from Finance Genie.</p>
+            <p>Need help? <a href="http://localhost:8080/help">Visit our Help Center</a></p>
+            <p style="margin-top: 20px; font-size: 12px;">© 2026 Finance Genie. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+
+</html>
