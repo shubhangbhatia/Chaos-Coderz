@@ -82,6 +82,19 @@ router.get('/dashboard', isLoggedIn, async (req, res) => {
         const monthlyExpenseArr = new Array(12).fill(0);
         const allMonthDailyExpenses = Array.from({ length: 12 }, () => new Array(31).fill(0));
 
+        // Category breakdown
+        const categoryData = {
+            'Shopping': 0,
+            'Bills': 0,
+            'EMI': 0,
+            'Food': 0,
+            'Transportation': 0,
+            'Entertainment': 0,
+            'Healthcare': 0,
+            'Education': 0,
+            'Other': 0
+        };
+
         let totalIncome = 0;
         let totalExpense = 0;
 
@@ -100,6 +113,13 @@ router.get('/dashboard', isLoggedIn, async (req, res) => {
                     monthlyExpenseArr[month] += amount;
                     if (day < 31) {
                         allMonthDailyExpenses[month][day] += amount;
+                    }
+                    // Add to category breakdown
+                    const category = t.category || 'Other';
+                    if (categoryData.hasOwnProperty(category)) {
+                        categoryData[category] += amount;
+                    } else {
+                        categoryData['Other'] += amount;
                     }
                 }
             }
@@ -126,7 +146,8 @@ router.get('/dashboard', isLoggedIn, async (req, res) => {
             chartData: {
                 monthlyIncome: monthlyIncomeArr,
                 monthlyExpense: monthlyExpenseArr,
-                allMonthDailyExpenses: allMonthDailyExpenses
+                allMonthDailyExpenses: allMonthDailyExpenses,
+                categoryData: categoryData
             }
         });
     } catch (err) {

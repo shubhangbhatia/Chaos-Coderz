@@ -10,7 +10,7 @@ router.get('/transaction', isLoggedIn, (req, res) => {
 
 router.post('/transaction', isLoggedIn, async (req, res) => {
     try {
-        const { transactionName, transactionType, transactionAmount, transactionDate } = req.body;
+        const { transactionName, transactionType, transactionCategory, transactionAmount, transactionDate } = req.body;
 
         // Date validation: Should not be in the future
         const selectedDate = new Date(transactionDate || Date.now());
@@ -26,6 +26,7 @@ router.post('/transaction', isLoggedIn, async (req, res) => {
             userId: req.session.user.id,
             name: transactionName,
             type: transactionType,
+            category: transactionCategory || 'Other',
             amount: parseFloat(transactionAmount),
             date: transactionDate || Date.now()
         });
