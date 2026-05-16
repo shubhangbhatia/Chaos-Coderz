@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../modules/User');
 const { isLoggedOut } = require('../middleware/authMiddleware');
+const { setTokenCookies, clearTokenCookies } = require('../utils/jwtUtils');
 
 router.get('/login', isLoggedOut, (req, res) => {
     res.render('login');
@@ -11,11 +12,20 @@ router.post('/login', async (req, res) => {
     try {
         const { username, password } = req.body;
         const user = await User.findOne({ username });
-        if (user && user.password === password) {
+        if (!user) {
+            console.log('Login failed for:', username, '- user not found');
+            return res.redirect('/login');
+        }
+
+        const isMatch = await user.comparePassword(password);
+        if (isMatch) {
+            // Set JWT token cookies
+            setTokenCookies(res, user);
+            // Also set session for EJS template compatibility
             req.session.user = { id: user._id, username: user.username };
             res.redirect('/');
         } else {
-            console.log('Login failed for:', username);
+            console.log('Login failed for:', username, '- incorrect password');
             res.redirect('/login');
         }
     } catch (error) {
@@ -43,6 +53,9 @@ router.post('/signup', async (req, res) => {
         await newUser.save();
         console.log('User created successfully:', newUser._id);
 
+        // Set JWT token cookies
+        setTokenCookies(res, newUser);
+        // Also set session for EJS template compatibility
         req.session.user = { id: newUser._id, username: newUser.username };
         req.session.save((err) => {
             if (err) {
@@ -58,6 +71,9 @@ router.post('/signup', async (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
+    // Clear JWT cookies
+    clearTokenCookies(res);
+    // Destroy session
     req.session.destroy();
     res.redirect('/login');
 });
