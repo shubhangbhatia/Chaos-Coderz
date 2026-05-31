@@ -9,6 +9,16 @@
                             <i class="fas fa-file-invoice-dollar me-2 text-primary"></i>Create New Bill
                         </h2>
 
+                        <% if (errors && errors.length) { %>
+                          <div class="alert alert-danger">
+                            <ul class="mb-0">
+                              <% errors.forEach(error => { %>
+                                <li><%= error.msg %></li>
+                              <% }) %>
+                            </ul>
+                          </div>
+                        <% } %>
+
                         <form class="needs-validation" action="/add-bill" method="POST" novalidate id="orderForm">
                             <!-- Bill/Order Name -->
                             <div class="mb-4">
@@ -17,7 +27,7 @@
                                 </label>
                                 <input type="text" class="form-control form-control-lg" id="orderName" name="orderName"
                                     placeholder="e.g., Client Alpha - Web Design" required minlength="3"
-                                    maxlength="100">
+                                    maxlength="100" value="<%= oldInput && oldInput.orderName ? oldInput.orderName : '' %>">
                                 <div class="invalid-feedback">
                                     Please provide a valid name (3-100 characters).
                                 </div>
@@ -31,7 +41,8 @@
                                 <div class="input-group input-group-lg has-validation">
                                     <span class="input-group-text">₹</span>
                                     <input type="number" class="form-control" id="billAmount" name="billAmount"
-                                        placeholder="0.00" step="0.01" min="0.01" required>
+                                        placeholder="0.00" step="0.01" min="0.01" required
+                                        value="<%= oldInput && oldInput.billAmount ? oldInput.billAmount : '' %>">
                                     <div class="invalid-feedback">
                                         Please provide a valid amount greater than 0.
                                     </div>
@@ -46,7 +57,7 @@
                                 <div class="transaction-type-selector">
                                     <div class="form-check form-check-custom">
                                         <input class="form-check-input" type="radio" name="orderStatus"
-                                            id="statusPending" value="pending" checked required>
+                                            id="statusPending" value="pending" required <%= !oldInput || oldInput.orderStatus === 'pending' ? 'checked' : '' %>>
                                         <label class="form-check-label" for="statusPending">
                                             <div class="type-option expense-option">
                                                 <i class="fas fa-clock"></i>
@@ -56,7 +67,7 @@
                                     </div>
                                     <div class="form-check form-check-custom">
                                         <input class="form-check-input" type="radio" name="orderStatus" id="statusPaid"
-                                            value="paid" required>
+                                            value="paid" required <%= oldInput && oldInput.orderStatus === 'paid' ? 'checked' : '' %>>
                                         <label class="form-check-label" for="statusPaid">
                                             <div class="type-option income-option">
                                                 <i class="fas fa-check-double"></i>
@@ -73,7 +84,7 @@
                                     <i class="fas fa-calendar-exclamation me-2 text-primary"></i>Due Date
                                 </label>
                                 <input type="date" class="form-control form-control-lg" id="dueDate" name="dueDate"
-                                    required>
+                                    required value="<%= oldInput && oldInput.dueDate ? oldInput.dueDate : '' %>">
                                 <div class="form-text mt-2">
                                     <i class="fas fa-info-circle me-1"></i> Notification will be sent on this date.
                                 </div>
@@ -86,7 +97,7 @@
                             <div class="mb-4">
                                 <div class="form-check form-switch">
                                     <input class="form-check-input" type="checkbox" id="isRecurring" name="isRecurring"
-                                        onchange="toggleRecurringOptions()">
+                                        onchange="toggleRecurringOptions()" <%= oldInput && oldInput.isRecurring === 'on' ? 'checked' : '' %>>
                                     <label class="form-check-label fw-semibold" for="isRecurring">
                                         <i class="fas fa-repeat me-2 text-primary"></i>Make this a recurring bill
                                     </label>
@@ -100,9 +111,9 @@
                                 </label>
                                 <select class="form-select form-select-lg" id="recurringInterval"
                                     name="recurringInterval">
-                                    <option value="weekly">Weekly</option>
-                                    <option value="monthly" selected>Monthly</option>
-                                    <option value="yearly">Yearly</option>
+                                    <option value="weekly" <%= oldInput && oldInput.recurringInterval === 'weekly' ? 'selected' : '' %>>Weekly</option>
+                                    <option value="monthly" <%= !oldInput || oldInput.recurringInterval === 'monthly' ? 'selected' : '' %>>Monthly</option>
+                                    <option value="yearly" <%= oldInput && oldInput.recurringInterval === 'yearly' ? 'selected' : '' %>>Yearly</option>
                                 </select>
                                 <div class="form-text mt-2">
                                     <i class="fas fa-info-circle me-1"></i> A new bill will be created automatically
